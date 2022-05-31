@@ -1,12 +1,15 @@
 #!/bin/bash
 #b4b37df04b840ec7
-echo "Input the acces token, and press Enter: "
-read access_token
+read -p "Input the acces token, and press Enter: [b4b37df04b840ec7]" access_token
+access_token=${access_token:-'b4b37df04b840ec7'}
+read -p "Remove container and their volumes after work? [y/n]: " removeTrigger
+removeTrigger=${removeTrigger:-'y'}
 problemURL="https://hackattic.com/challenges/dockerized_solutions/problem?access_token=${access_token}"
 mkdir -p tmp
 echo $problemURL > ./tmp/problem.url
 touch ./.env
 echo '' > ./.env
+containerName='registry'
 
 # Installing dependencies: curl and jq
 sudo apt-get update -y && sudo apt-get install jq -y && sudo apt-get install curl -y
@@ -41,9 +44,10 @@ json_payload=$(jq -n \
   --arg registry_host "${registry_host}" \
   '$ARGS.named')
 
-until [ "`docker inspect -f {{.State.Running}} $containerName`"=="true" ]; do
-    sleep 0.1;
-done;
+until [ "`docker inspect -f {{.State.Running}} ${containerName}`"=="true" ] 
+do
+    sleep 0.1
+done
 
 echo 'Extraction of the secret...'
 secret=$(curl -s \
@@ -56,3 +60,9 @@ echo "Your secret is: ${secret}"
 
 # Delete temporary (debug) data
 rm -rf ./tmp
+
+# Stop and remove container after work
+if [[ $removeTrigger -eq "y" ]] || [[ $removeTrigger -eq "yes" ]]
+then
+  docker container stop ${containerName} && docker container rm -v ${containerName}
+fi
