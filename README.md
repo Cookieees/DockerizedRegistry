@@ -7,6 +7,7 @@ You can get this token by logging in to hackattic and visiting [page](https://ha
 On this page, in the "Getting the problem set" section, you will see a GET request with the "access_token" parameter, get it.
 
 You also, of course, need to have Docker and ... docker-compose (don't ask me, just coz) installed.
+And finally you'll need unzip installed.
 
 ## Getting a secret
 ```
