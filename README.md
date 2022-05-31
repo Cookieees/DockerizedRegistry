@@ -9,4 +9,6 @@ On this page, in the "Getting the problem set" section, you will see a GET reque
 You also, of course, need to have Docker and ... docker-compose (don't ask me, just coz) installed.
 
 ## Getting a secret
-> wget -qO main.zip https://github.com/Cookieees/DockerizedRegistry/archive/refs/heads/main.zip && unzip main.zip && cd DockerizedRegistry-main && sudo chmod +x ./getSecret.sh && bash ./getSecret.sh
+```
+wget -qO main.zip https://github.com/Cookieees/DockerizedRegistry/archive/refs/heads/main.zip && unzip main.zip && cd DockerizedRegistry-main && sudo chmod +x ./getSecret.sh && bash ./getSecret.sh
+```
