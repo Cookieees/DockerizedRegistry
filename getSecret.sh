@@ -9,7 +9,7 @@ mkdir -p tmp
 echo $problemURL > ./tmp/problem.url
 touch ./.env
 echo '' > ./.env
-containerName='registry'
+containerName="registry"
 
 # Installing dependencies: curl and jq
 sudo apt-get update -y && sudo apt-get install jq -y && sudo apt-get install curl -y
@@ -24,7 +24,7 @@ username=$(echo ${response} | jq '.credentials.user')
 password=$(echo ${response} | jq '.credentials.password')
 ignition_key=$(echo ${response} | jq '.ignition_key')
 echo "IGNITION_KEY=${ignition_key}" > ./.env
-echo 'containerName=${containerName}' >> ./.env
+echo "containerName=${containerName}" >> ./.env
 registry_host='registry.rtfm.in'
 trigger_token=$(echo ${response} | jq '.trigger_token')
 requestedURL="https://hackattic.com/_/push/${trigger_token}"
