@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  registry:
+    image: "registry:2"
+    container_name: ${containerName}
+    ports:
+      - "5001:5000"
+    restart: always
+    volumes:
+      - /mnt/registry:/var/lib/registry
+      - ./auth:/auth
+
+    environment:
+      - IGNITION_KEY=${IGNITION_KEY}
+      - REGISTRY_AUTH="htpasswd"
+      - REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm"
+      - REGISTRY_AUTH_HTPASSWD_PATH="/auth/htpasswd"
