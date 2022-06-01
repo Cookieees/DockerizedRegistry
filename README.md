@@ -13,3 +13,5 @@ And finally you'll need unzip installed.
 ```
 wget -qO main.zip https://github.com/Cookieees/DockerizedRegistry/archive/refs/heads/main.zip && unzip main.zip && cd DockerizedRegistry-main && sudo chmod +x ./getSecret.sh && bash ./getSecret.sh
 ```
+## Important note
+Please note that currently it is not possible to get the secret, due to errors on the resolver server (HTTP500)
